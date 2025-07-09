@@ -1,0 +1,498 @@
+
+<div class="box1">
+  <div class="caja-central">
+    <div class="titulo">INGRESA LA ORDEN PARA VISUALIZAR FOTOS</div>
+    <form [formGroup]="formulario" class="form">
+      <div class="info">
+        <span class="title">INGRESE LA ORDEN</span>
+        <p class="description">
+          Cuando ingrese la orden y pulse 'Confirmar', se visualizarán<br />
+          todas las fotos de las órdenes y destinos que haya escrito.
+        </p>
+      </div>
+      <div class="input-fields">
+        <input
+          formControlName="input1"
+          maxlength="1"
+          type="tel"
+          (keyup)="onKeyup($event)"
+          id="input1"
+          placeholder=""
+        />
+        <input
+          formControlName="input2"
+          maxlength="1"
+          type="tel"
+          (keyup)="onKeyup($event)"
+          id="input2"
+          placeholder=""
+        />
+        <input
+          formControlName="input3"
+          maxlength="1"
+          type="tel"
+          (keyup)="onKeyup($event)"
+          id="input3"
+          placeholder=""
+        />
+        <input
+          formControlName="input4"
+          maxlength="1"
+          type="tel"
+          (keyup)="onKeyup($event)"
+          id="input4"
+          placeholder=""
+        />
+        <input
+          formControlName="input5"
+          maxlength="1"
+          type="tel"
+          (keyup)="onKeyup($event)"
+          id="input5"
+          placeholder=""
+        />
+        <input
+          formControlName="input6"
+          maxlength="1"
+          type="tel"
+          (keyup)="onKeyup($event)"
+          id="input6"
+          placeholder=""
+        />
+        <input
+          formControlName="input7"
+          maxlength="1"
+          type="tel"
+          (keyup)="onKeyup($event)"
+          id="input7"
+          placeholder=""
+        />
+        <input
+          formControlName="input8"
+          maxlength="1"
+          type="tel"
+          (keyup)="onKeyup($event)"
+          id="input8"
+          placeholder=""
+        />
+      </div>
+
+      <div class="selector-destino" *ngIf="mostrarSelectorDestino">
+        <label for="destino" class="selector-label">
+          <i class="bi bi-geo-alt-fill"></i>
+          Seleccione un destino:
+        </label>
+        <select formControlName="destino" class="selector-field">
+          <option *ngFor="let destino of destinos" [value]="destino.key">
+            {{ destino.value }}
+          </option>
+        </select>
+      </div>
+
+      <div class="action-btns">
+        <button type="button" class="verify" (click)="onSubmit()">
+          <i class="bi bi-check-circle-fill"></i>
+          CONFIRMAR
+        </button>
+
+        <button type="button" class="verify" (click)="onSubmitClientesVarios()">
+          <i class="bi bi-people-fill"></i>
+          CONFIRMAR C.VARIOS
+        </button>
+
+        <button type="button" class="clear" (click)="limpiarCarpetaTemp()">
+          <i class="bi bi-trash3-fill"></i>
+          LIMPIAR CARPETA
+        </button>
+
+        <button type="button" class="look" (click)="verCarpetaTemporal()">
+          <i class="bi bi-eye-fill"></i>
+          VER ACTUAL
+        </button>
+
+        <button type="button" class="look" (click)="recargarApp()">
+          <i class="bi bi-arrow-clockwise"></i>
+          RECARGAR APP
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="ordenBuscada && carpetas.length > 0" class="subCarpetas">
+    <div class="carpetas-header">
+      <i class="bi bi-folder-fill"></i>
+      <h3>CARPETAS ENCONTRADAS EN DIRECTORIO:</h3>
+    </div>
+    <div class="carpetas-container">
+      <div class="carpeta-item" *ngFor="let carpeta of carpetas">
+        <div class="carpeta-info">
+          <i class="bi bi-folder2-open"></i>
+          <span class="carpeta-name">{{ carpeta }}</span>
+        </div>
+        <button type="button" class="look carpeta-btn" (click)="seleccionarCarpeta(carpeta)">
+          <i class="bi bi-hand-index-fill"></i>
+          SELECCIONAR
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="ordenBuscada && carpetas.length === 0" class="subCarpetas">
+    <div class="alert-info">
+      <i class="bi bi-info-circle-fill"></i>
+      <h3>NO SE ENCONTRARON CARPETAS EN EL DIRECTORIO. COPIANDO FOTOS DEL DIRECTORIO RAÍZ...</h3>
+    </div>
+  </div>
+
+  <div class="caja-foto">
+    <img src="assets/img/Solo_Logo-removebg-preview.png" alt="Logo TSI" />
+  </div>
+</div>
+
+
+<div class="box2">
+  <div class="clasificacion" *ngFor="let imageObj of imageUrls; let i = index">
+    <div class="imagen">
+      <img [src]="imageObj.url" alt="Imagen" [ngStyle]="{ 'transform': 'rotate(' + imageObj.rotation + 'deg)' }" />
+    </div>
+    <!-- <button (click)="rotateImage(imageObj, 90)">Rotar 90°</button>
+    <button (click)="rotateImage(imageObj, -90)">Rotar -90°</button> -->
+    <div class="menu">
+      <div class="opciones">
+        <div class="division">
+          <input
+            class="check"
+            type="checkbox"
+            [attr.data-image-url]="imageObj.url"
+            (change)="clasificarImagen('antes', imageObj, $event)"
+          />
+          ANTES
+        </div>
+        <div class="division">
+          <input
+            class="check"
+            type="checkbox"
+            [attr.data-image-url]="imageObj.url"
+            (change)="clasificarImagen('durante', imageObj, $event)"
+          />
+          DURANTE
+        </div>
+        <div class="division">
+          <input
+            class="check"
+            type="checkbox"
+            [attr.data-image-url]="imageObj.url"
+            (change)="clasificarImagen('despues', imageObj, $event)"
+          />
+          DESPUES
+        </div>
+        <div class="division">
+          <input
+            class="check"
+            type="checkbox"
+            [attr.data-image-url]="imageObj.url"
+            (change)="clasificarImagen('albaran', imageObj, $event)"
+          />
+          ALBARAN
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="box3">
+
+  <div class="arrayAntes">
+    <div class="titulo2">ESTAS SON LAS FOTOS DE ALBARAN :</div>
+    <div class="padreMarcosInd">
+      <div class="marcoIndividual" *ngFor="let imagen of imagenesAlbaran">
+        <img [src]="imagen.url" alt="Imagen de Albaran" />
+      </div>
+    </div>
+  </div>
+  
+  <div class="arrayAntes">
+    <div class="titulo2">ESTAS SON LAS FOTOS DE ANTES :</div>
+    <div class="padreMarcosInd">
+      <div class="marcoIndividual" *ngFor="let imagen of imagenesAntes">
+        <img [src]="imagen.url" alt="Imagen de Antes" />
+      </div>
+    </div>
+  </div>
+
+  <div class="arrayAntes">
+    <div class="titulo2">ESTAS SON LAS FOTOS DE DURANTE :</div>
+    <div class="padreMarcosInd">
+      <div class="marcoIndividual" *ngFor="let imagen of imagenesDurante">
+        <img [src]="imagen.url" alt="Imagen de Durante" />
+      </div>
+    </div>
+  </div>
+
+  <div class="arrayAntes">
+    <div class="titulo2">ESTAS SON LAS FOTOS DE DESPUES :</div>
+    <div class="padreMarcosInd">
+      <div class="marcoIndividual" *ngFor="let imagen of imagenesDespues">
+        <img [src]="imagen.url" alt="Imagen de Despues" />
+      </div>
+    </div>
+  </div>
+
+  <div class="botonesClasificados">
+    <button (click)="generarPDF2($event)">
+      <div class="svg-wrapper-1">
+        <div class="svg-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path
+              fill="currentColor"
+              d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <span>CREAR PDF</span>
+    </button>
+
+    <button (click)="fotoEstrecha()">
+      <div class="svg-wrapper-1">
+        <div class="svg-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path
+              fill="currentColor"
+              d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <span>FOTO ESTRECHA</span>
+    </button>
+
+    <button (click)="clasificacionAutomatica()">
+      <div class="svg-wrapper-1">
+        <div class="svg-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path
+              fill="currentColor"
+              d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <span>CLASIFICAR AUTOMATICO</span>
+    </button>
+
+  </div>
+</div>
+
+<div *ngIf="cargandoPDF" class="overlay">
+  <div class="loader-container">
+    <div class="loader"></div>
+    <div class="loader-text">Generando PDF...</div>
+  </div>
+</div>
+
+<div *ngIf="cargandoImagenes" class="overlay">
+  <div class="loader-container">
+    <div class="loader"></div>
+    <div class="loader-text">Copiando imágenes...</div>
+  </div>
+</div>
+
+<!-- DOCUMENTO PARA ALBARAN -->
+<div class="documento">
+  <div class="hoja" *ngFor="let grupoImagenes of gruposAlbaran">
+    <div class="encabezado">
+      <div class="logos">
+        <div class="logoTsi">
+          <img src="assets/img/TSI.jpg" alt="" />
+        </div>
+        <div class="logoCliente" [ngStyle]="datosOrden.abreviatura === 'BOS' ? estilosBOS : null">
+          <img *ngIf="datosOrden.tipo === 'REP' || datosOrden.tipo === 'RPP' || datosOrden.tipo === 'REX'" src="assets/img/Repsol.jpg" alt="Logo Repsol" />
+          <img *ngIf="datosOrden.tipo === 'GAP' || datosOrden.tipo === 'GPT'" src="assets/img/galp.jpg" alt="Logo Galp" />
+          <img *ngIf="datosOrden.tipo === 'CGS' || datosOrden.tipo === 'CCL' || datosOrden.tipo === 'CEO' || datosOrden.tipo === 'CET' || datosOrden.tipo === 'CSA' || datosOrden.tipo === 'CED' || datosOrden.tipo === 'CSP' || datosOrden.tipo === 'CVR' || datosOrden.tipo === 'FCP' || datosOrden.tipo === 'SPS' || datosOrden.tipo === 'CEG'" src="assets/img/Cepsa.jpg" alt="Logo Cepsa" />
+          <img *ngIf="datosOrden.abreviatura === 'BOS'" src="assets/img/Bosch.jpg" alt="Logo Bosch" />
+          <img *ngIf="datosOrden.abreviatura === 'NGB'" src="assets/img/ABANCA.jpg" alt="Logo Abanca" />
+          <img *ngIf="datosOrden.abreviatura === 'OCC'" src="assets/img/Occident.jpg" alt="Logo OCC" />
+          <img *ngIf="datosOrden.abreviatura === 'FDS'" src="assets/img/FedEx.jpg" alt="Logo Fedex" />
+          <img *ngIf="datosOrden.abreviatura === 'RDI'" src="assets/img/redeia.jpg" alt="Logo redeia" />
+        </div>
+      </div>
+      <div class="padreTexto">
+        <div class="texto" *ngIf="datosOrden?.tipoUnidad">{{ datosOrden?.tipoUnidad === 'US' ? 'US Nº' : 'ES Nº' }}: {{ datosOrden?.nombreEstacionEstaciones }}</div>
+        <div class="texto" *ngIf="datosOrden?.nombre">Nombre : {{ datosOrden?.nombre }}</div>
+        <div class="texto" *ngIf="datosOrden?.poblacion">Población : {{ datosOrden?.poblacion }} | {{datosOrden?.provincia}}</div>
+        <div class="texto" *ngIf="datosOrden?.direccion">Dirección : {{ datosOrden?.direccion }}</div>
+        <div class="texto" *ngIf="datosOrden?.aviso">Aviso : {{ datosOrden?.aviso }}</div>
+        <div class="texto">OF : {{ datosOrden?.orden }}</div>
+        <div class="texto" *ngIf="datosOrden?.abreviatura">Sigla : {{datosOrden?.abreviatura}} </div>
+      </div>
+    </div>
+    <div class="subTitulos">
+      <div class="subTitulos1">FOTOGRAFIA ALBARAN</div>
+      <div class="franja"></div>
+    </div>
+    <div class="espacioFotos" [ngClass]="obtenerClaseGrupo(grupoImagenes)">
+      <div class="espacioIndvFoto" *ngFor="let imagen of grupoImagenes" [ngClass]="imagen.esHorizontal ? 'espacioIndvFotoHorizontal' : claseFoto">
+        <img [src]="imagen.url" alt="Imagen de Albaran" />
+      </div>
+    </div>
+    <div class="subTitulos">
+      <div class="franja"></div>
+      <div class="pie">TSI Ingeniería de Imagen - OF {{ datosOrden?.orden }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- DOCUMENTO PARA FOTOS DE ANTES -->
+<div class="documento">
+  <div class="hoja" *ngFor="let grupoImagenes of gruposAntes">
+    <div class="encabezado">
+      <div class="logos">
+        <div class="logoTsi">
+          <img src="assets/img/TSI.jpg" alt="" />
+        </div>
+        <div class="logoCliente" [ngStyle]="datosOrden.abreviatura === 'BOS' ? estilosBOS : null">
+          <img *ngIf="datosOrden.tipo === 'REP' || datosOrden.tipo === 'RPP' || datosOrden.tipo === 'REX'" src="assets/img/Repsol.jpg" alt="Logo Repsol" />
+          <img *ngIf="datosOrden.tipo === 'GAP' || datosOrden.tipo === 'GPT'" src="assets/img/galp.jpg" alt="Logo Galp" />
+          <img *ngIf="datosOrden.tipo === 'CGS' || datosOrden.tipo === 'CCL' || datosOrden.tipo === 'CEO' || datosOrden.tipo === 'CET' || datosOrden.tipo === 'CSA' || datosOrden.tipo === 'CED' || datosOrden.tipo === 'CSP' || datosOrden.tipo === 'CVR' || datosOrden.tipo === 'FCP' || datosOrden.tipo === 'SPS' || datosOrden.tipo === 'CEG'" src="assets/img/Cepsa.jpg" alt="Logo Cepsa" />
+          <img *ngIf="datosOrden.abreviatura === 'BOS'" src="assets/img/Bosch.jpg" alt="Logo Bosch" />
+          <img *ngIf="datosOrden.abreviatura === 'NGB'" src="assets/img/ABANCA.jpg" alt="Logo Abanca" />
+          <img *ngIf="datosOrden.abreviatura === 'OCC'" src="assets/img/Occident.jpg" alt="Logo OCC" />
+          <img *ngIf="datosOrden.abreviatura === 'FDS'" src="assets/img/FedEx.jpg" alt="Logo Fedex" />
+          <img *ngIf="datosOrden.abreviatura === 'RDI'" src="assets/img/redeia.jpg" alt="Logo redeia" />
+        </div>
+      </div>
+      <div class="padreTexto">
+        <div class="texto" *ngIf="datosOrden?.tipoUnidad">{{ datosOrden?.tipoUnidad === 'US' ? 'US Nº' : 'ES Nº' }}: {{ datosOrden?.nombreEstacionEstaciones }}</div>
+        <div class="texto" *ngIf="datosOrden?.nombre">Nombre : {{ datosOrden?.nombre }}</div>
+        <div class="texto" *ngIf="datosOrden?.poblacion">Población : {{ datosOrden?.poblacion }} | {{datosOrden?.provincia}}</div>
+        <div class="texto" *ngIf="datosOrden?.direccion">Dirección : {{ datosOrden?.direccion }}</div>
+        <div class="texto" *ngIf="datosOrden?.aviso">Aviso : {{ datosOrden?.aviso }}</div>
+        <div class="texto">OF : {{ datosOrden?.orden }}</div>
+        <div class="texto" *ngIf="datosOrden?.abreviatura">Sigla : {{datosOrden?.abreviatura}} </div>
+      </div>
+    </div>
+    <div class="subTitulos">
+      <div class="subTitulos1">FOTOGRAFIAS ANTES</div>
+      <div class="franja"></div>
+    </div>
+    <div class="espacioFotos" [ngClass]="obtenerClaseGrupo(grupoImagenes)">
+      <div class="espacioIndvFoto" *ngFor="let imagen of grupoImagenes" [ngClass]="imagen.esHorizontal ? 'espacioIndvFotoHorizontal' : claseFoto">
+        <img [src]="imagen.url" alt="Imagen de Antes" />
+      </div>
+    </div>
+    <div class="subTitulos">
+      <div class="franja"></div>
+      <div class="pie">TSI Ingeniería de Imagen - OF {{ datosOrden?.orden }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- DOCUMENTO PARA FOTOS DURANTE -->
+<div class="documento">
+  <div class="hoja" *ngFor="let grupoImagenes of gruposDurante">
+    <div class="encabezado">
+      <div class="logos">
+        <div class="logoTsi">
+          <img src="assets/img/TSI.jpg" alt="" />
+        </div>
+        <div class="logoCliente" [ngStyle]="datosOrden.abreviatura === 'BOS' ? estilosBOS : null">
+          <img *ngIf="datosOrden.tipo === 'REP' || datosOrden.tipo === 'RPP' || datosOrden.tipo === 'REX'" src="assets/img/Repsol.jpg" alt="Logo Repsol" />
+          <img *ngIf="datosOrden.tipo === 'GAP' || datosOrden.tipo === 'GPT'" src="assets/img/galp.jpg" alt="Logo Galp" />
+          <img *ngIf="datosOrden.tipo === 'CGS' || datosOrden.tipo === 'CCL' || datosOrden.tipo === 'CEO' || datosOrden.tipo === 'CET' || datosOrden.tipo === 'CSA' || datosOrden.tipo === 'CED' || datosOrden.tipo === 'CSP' || datosOrden.tipo === 'CVR' || datosOrden.tipo === 'FCP' || datosOrden.tipo === 'SPS' || datosOrden.tipo === 'CEG'" src="assets/img/Cepsa.jpg" alt="Logo Cepsa" />
+          <img *ngIf="datosOrden.abreviatura === 'BOS'" src="assets/img/Bosch.jpg" alt="Logo Bosch" />
+          <img *ngIf="datosOrden.abreviatura === 'NGB'" src="assets/img/ABANCA.jpg" alt="Logo Abanca" />
+          <img *ngIf="datosOrden.abreviatura === 'OCC'" src="assets/img/Occident.jpg" alt="Logo OCC" />
+          <img *ngIf="datosOrden.abreviatura === 'FDS'" src="assets/img/FedEx.jpg" alt="Logo Fedex" />
+          <img *ngIf="datosOrden.abreviatura === 'RDI'" src="assets/img/redeia.jpg" alt="Logo redeia" />
+        </div>
+      </div>
+      <div class="padreTexto">
+        <div class="texto" *ngIf="datosOrden?.tipoUnidad">{{ datosOrden?.tipoUnidad === 'US' ? 'US Nº' : 'ES Nº' }}: {{ datosOrden?.nombreEstacionEstaciones }}</div>
+        <div class="texto" *ngIf="datosOrden?.nombre">Nombre : {{ datosOrden?.nombre }}</div>
+        <div class="texto" *ngIf="datosOrden?.poblacion">Población : {{ datosOrden?.poblacion }} | {{datosOrden?.provincia}}</div>
+        <div class="texto" *ngIf="datosOrden?.direccion">Dirección : {{ datosOrden?.direccion }}</div>
+        <div class="texto" *ngIf="datosOrden?.aviso">Aviso : {{ datosOrden?.aviso }}</div>
+        <div class="texto">OF : {{ datosOrden?.orden }}</div>
+        <div class="texto" *ngIf="datosOrden?.abreviatura">Sigla : {{datosOrden?.abreviatura}} </div>
+      </div>
+    </div>
+    <div class="subTitulos">
+      <div class="subTitulos1">FOTOGRAFIAS DURANTE</div>
+      <div class="franja"></div>
+    </div>
+    <div class="espacioFotos" [ngClass]="obtenerClaseGrupo(grupoImagenes)">
+      <div class="espacioIndvFoto" *ngFor="let imagen of grupoImagenes" [ngClass]="imagen.esHorizontal ? 'espacioIndvFotoHorizontal' : claseFoto">
+        <img [src]="imagen.url" alt="Imagen de Durante" />
+      </div>
+    </div>
+    <div class="subTitulos">
+      <div class="franja"></div>
+      <div class="pie">TSI Ingeniería de Imagen - OF {{ datosOrden?.orden }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- DOCUMENTO PARA FOTOS DESPUES -->
+<div class="documento">
+  <div class="hoja" *ngFor="let grupoImagenes of gruposDespues">
+    <div class="encabezado">
+      <div class="logos">
+        <div class="logoTsi">
+          <img src="assets/img/TSI.jpg" alt="" />
+        </div>
+        <div class="logoCliente" [ngStyle]="datosOrden.abreviatura === 'BOS' ? estilosBOS : null">
+          <img *ngIf="datosOrden.tipo === 'REP' || datosOrden.tipo === 'RPP' || datosOrden.tipo === 'REX'" src="assets/img/Repsol.jpg" alt="Logo Repsol" />
+          <img *ngIf="datosOrden.tipo === 'GAP' || datosOrden.tipo === 'GPT'" src="assets/img/galp.jpg" alt="Logo Galp" />
+          <img *ngIf="datosOrden.tipo === 'CGS' || datosOrden.tipo === 'CCL' || datosOrden.tipo === 'CEO' || datosOrden.tipo === 'CET' || datosOrden.tipo === 'CSA' || datosOrden.tipo === 'CED' || datosOrden.tipo === 'CSP' || datosOrden.tipo === 'CVR' || datosOrden.tipo === 'FCP' || datosOrden.tipo === 'SPS' || datosOrden.tipo === 'CEG'" src="assets/img/Cepsa.jpg" alt="Logo Cepsa" />
+          <img *ngIf="datosOrden.abreviatura === 'BOS'" src="assets/img/Bosch.jpg" alt="Logo Bosch" />
+          <img *ngIf="datosOrden.abreviatura === 'NGB'" src="assets/img/ABANCA.jpg" alt="Logo Abanca" />
+          <img *ngIf="datosOrden.abreviatura === 'OCC'" src="assets/img/Occident.jpg" alt="Logo OCC" />
+          <img *ngIf="datosOrden.abreviatura === 'FDS'" src="assets/img/FedEx.jpg" alt="Logo Fedex" />
+          <img *ngIf="datosOrden.abreviatura === 'RDI'" src="assets/img/redeia.jpg" alt="Logo redeia" />
+        </div>
+      </div>
+      <div class="padreTexto">
+        <div class="texto" *ngIf="datosOrden?.tipoUnidad">{{ datosOrden?.tipoUnidad === 'US' ? 'US Nº' : 'ES Nº' }}: {{ datosOrden?.nombreEstacionEstaciones }}</div>
+        <div class="texto" *ngIf="datosOrden?.nombre">Nombre : {{ datosOrden?.nombre }}</div>
+        <div class="texto" *ngIf="datosOrden?.poblacion">Población : {{ datosOrden?.poblacion }} | {{datosOrden?.provincia}}</div>
+        <div class="texto" *ngIf="datosOrden?.direccion">Dirección : {{ datosOrden?.direccion }}</div>
+        <div class="texto" *ngIf="datosOrden?.aviso">Aviso : {{ datosOrden?.aviso }}</div>
+        <div class="texto">OF : {{ datosOrden?.orden }}</div>
+        <div class="texto" *ngIf="datosOrden?.abreviatura">Sigla : {{datosOrden?.abreviatura}} </div>
+      </div>
+    </div>
+    <div class="subTitulos">
+      <div class="subTitulos1">FOTOGRAFIAS DESPUES</div>
+      <div class="franja"></div>
+    </div>
+    <div class="espacioFotos" [ngClass]="obtenerClaseGrupo(grupoImagenes)">
+      <div class="espacioIndvFoto" *ngFor="let imagen of grupoImagenes" [ngClass]="imagen.esHorizontal ? 'espacioIndvFotoHorizontal' : claseFoto">
+        <img [src]="imagen.url" alt="Imagen de Despues" />
+      </div>
+    </div>
+    <div class="subTitulos">
+      <div class="franja"></div>
+      <div class="pie">TSI Ingeniería de Imagen - OF {{ datosOrden?.orden }}</div>
+    </div>
+  </div>
+</div>

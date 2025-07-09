@@ -1,0 +1,1073 @@
+.box1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid red; */
+
+  width: 100%;
+  height: 100vh;
+
+  padding: 1%;
+}
+
+.caja-central {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid red; */
+
+  width: 150vh;
+  height: 50vh;
+
+  /* box-shadow: 10px 10px 10px rgba(238, 235, 235, 0.1); */
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid red; */
+
+  width: 100%;
+  height: 10%;
+
+  padding: 1%;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: xx-large;
+}
+
+/* *********************FORMULARIO******************* */
+
+.form {
+  --black: #000000;
+  --ch-black: #141414;
+  --eer-black: #1b1b1b;
+  --night-rider: #2e2e2e;
+  --white: #ffffff;
+  --af-white: #f3f3f3;
+  --ch-white: #e1e1e1;
+  --tomato: #fa5656;
+  font-family: "Poppins", sans-serif;
+  padding: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  color: var(--af-white);
+  background-color: var(--black);
+
+  /* box-shadow: 10px 10px 10px rgba(0, 0, 0, .1); */
+  box-shadow: 10px 10px 10px rgba(238, 235, 235, 0.1);
+  border-radius: 10px;
+
+  min-height: 30vh;
+  height: auto;
+
+  justify-content: space-around;
+  /* border: 1px solid red; */
+}
+
+/*----heading and description-----*/
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* border: 1px solid red; */
+}
+
+.title {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.description {
+  margin-top: 10px;
+  font-size: medium;
+}
+
+/*----input-fields------*/
+
+.form .input-fields {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.form .input-fields input {
+  height: 2.5em;
+  width: 2.5em;
+  outline: none;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  color: var(--af-white);
+  border-radius: 5px;
+  border: 2.5px solid var(--eer-black);
+  background-color: var(--eer-black);
+}
+
+.form .input-fields input:focus {
+  border: 1px solid var(--af-white);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+  transition: 0.5s;
+}
+
+/* Mejoras para el selector de destino */
+.selector-destino {
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.selector-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--af-white);
+  font-size: medium;
+  font-weight: 500;
+}
+
+.selector-label i {
+  color: #ff9800;
+  font-size: 1.1em;
+}
+
+.selector-field {
+  padding: 10px 15px;
+  border: 2px solid var(--eer-black);
+  border-radius: 8px;
+  background-color: var(--eer-black);
+  color: var(--af-white);
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.selector-field:focus {
+  border-color: var(--af-white);
+  box-shadow: 0 0 0 2px rgba(243, 243, 243, 0.2);
+}
+
+.selector-field option {
+  background-color: var(--eer-black);
+  color: var(--af-white);
+}
+
+/*-----verify and clear buttons-----*/
+
+.action-btns {
+  display: flex;
+  margin-top: 20px;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Mejoras para los botones con iconos */
+.action-btns button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.action-btns button i {
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+}
+
+.verify {
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--night-rider);
+  text-shadow: none;
+  background: var(--af-white);
+  box-shadow: transparent;
+  border: 1px solid var(--af-white);
+  transition: 0.3s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+.verify:hover,
+.verify:focus {
+  color: green;
+  background-color: transparent;
+  border: 1px solid green;
+}
+
+.verify i {
+  color: var(--night-rider);
+}
+
+.verify:hover i {
+  color: green;
+  transform: scale(1.1);
+}
+
+.clear {
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ch-white);
+  text-shadow: none;
+  background: transparent;
+  border: 1px solid var(--ch-white);
+  transition: 0.3s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+.clear:hover,
+.clear:focus {
+  color: var(--tomato);
+  background-color: transparent;
+  border: 1px solid var(--tomato);
+}
+
+.clear i {
+  color: var(--ch-white);
+}
+
+.clear:hover i {
+  color: var(--tomato);
+  transform: scale(1.1);
+}
+
+.look {
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--night-rider);
+  text-shadow: none;
+  background: var(--af-white);
+  box-shadow: transparent;
+  border: 1px solid var(--af-white);
+  transition: 0.3s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+.look:hover,
+.look:focus {
+  color: blue;
+  background-color: transparent;
+  border: 1px solid blue;
+}
+
+.look i {
+  color: var(--night-rider);
+}
+
+.look:hover i {
+  color: blue;
+  transform: scale(1.1);
+}
+
+.subCarpetas { 
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  gap: 1vh;
+
+  /* border: 2px solid red; */
+  color: white;
+  font-size: medium;
+  font-family: "Poppins", sans-serif;
+
+}
+
+/* Mejoras para la sección de carpetas */
+.carpetas-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.carpetas-header i {
+  color: #ff9800;
+  font-size: 1.5em;
+}
+
+.carpetas-header h3 {
+  margin: 0;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.carpetas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.carpeta-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.carpeta-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.carpeta-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.carpeta-info i {
+  color: #ff9800;
+  font-size: 1.3em;
+}
+
+.carpeta-name {
+  color: white;
+  font-size: medium;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.carpeta-btn {
+  padding: 8px 15px !important;
+  font-size: 0.85rem !important;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.carpeta-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Mejoras para la alerta de información */
+.alert-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(33, 150, 243, 0.1);
+  border: 1px solid rgba(33, 150, 243, 0.3);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.alert-info i {
+  color: #2196f3;
+  font-size: 1.5em;
+  flex-shrink: 0;
+}
+
+.alert-info h3 {
+  margin: 0;
+  font-size: medium;
+  font-weight: bold;
+  color: #2196f3;
+}
+
+.subCarpetasSub{ 
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  gap: 1vh;
+  flex-wrap: wrap;
+
+  color: white;
+  font-size: medium;
+  font-family: "Poppins", sans-serif;
+}
+
+.subCarpetasContenido{
+
+  /* border: 2px solid blue; */
+  color: white;
+  font-size: medium;
+  font-family: "Poppins", sans-serif;
+  height: auto;
+
+}
+
+.caja-foto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid red; */
+
+  width: 20vh;
+  height: 20vh;
+
+  /* box-shadow: 10px 10px 10px rgba(238, 235, 235, 0.1); */
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+
+/* **********************CAJA DE CLASIFICACION************************* */
+
+.box2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid red; */
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: auto;
+
+  padding: 2vh;
+  gap: 2vh;
+}
+
+.clasificacion {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  border: 8px ridge #ff9800;
+  /* box-shadow: 2px 2px 2px 2px white; */
+
+  width: 15%; /* Más pequeño para que quepan 6 por fila */
+  height: 55vh; /* Más compacto */
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid blue; */
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: 20%; /* Reducido de 35% a 25% */
+  gap: 0.1vh; /* Menos gap */
+}
+
+.imagen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid green; */
+
+  width: 100%;
+  height: 80%; /* Aumentado de 65% a 75% - más espacio para la foto */
+}
+
+.opciones {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid red; */
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: 100%;
+}
+
+.division {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; /* Centramos en lugar de space-between */
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid whitesmoke; */
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: large;
+
+  padding: 0.3vh; /* Padding más compacto */
+
+  width: 49%;
+  height: 45%;
+}
+
+.check {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  color: white;
+  font-family: "Poppins", sans-serif;
+
+  width: 2vh; /* Ligeramente más pequeño para mejor proporción */
+  height: 2vh; /* Ligeramente más pequeño para mejor proporción */
+  cursor: pointer;
+  margin-right: 0.3vh; /* Pequeño margen entre checkbox y texto */
+}
+
+.check:checked {
+  box-shadow: 0 0 8px 3px #ccc; /* Shadow ajustado */
+}
+
+/* ******************BOX3 - CLASIFICACION DE IMAGEN*************** */
+
+.box3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid red; */
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: auto;
+
+  gap: 1vh;
+  padding: 2vh;
+}
+
+.arrayAntes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid blue; */
+  border: 8px ridge #ff9800;
+
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: auto;
+
+  padding: 0.5vh;
+
+  gap: 0.5vh;
+}
+
+.titulo2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid green; */
+  flex-wrap: wrap;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-size: xx-large;
+
+  width: 30%;
+  height: auto;
+}
+
+.padreMarcosInd {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  /* border: 1px solid red; */
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+  gap: 0.5vh;
+}
+
+.marcoIndividual {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid yellow; */
+  flex-wrap: wrap;
+  color: white;
+
+  width: 8%;
+  height: 20vh;
+}
+
+.botonesClasificados {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid yellow; */
+  flex-wrap: wrap;
+  color: white;
+
+  width: 100%;
+  height: 10vh;
+}
+
+button {
+  font-family: inherit;
+  font-size: 20px;
+  background: black;
+  color: white;
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+}
+
+button span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+button svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+button:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+button:hover svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+button:hover span {
+  transform: translateX(10em);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
+}
+
+/* ****************documento******************* */
+
+.documento {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #232020;
+  /* border: 1px solid red; */
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: auto;
+
+  padding: 1vh;
+}
+
+.hoja {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+  background: white;
+  /* border: 1px solid red; */
+  flex-wrap: wrap;
+
+  width: 210mm;
+  height: 297mm;
+
+  padding-top: 2vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
+  padding-bottom: 2vh;
+}
+
+.encabezado {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: white;
+  /* border: 1px solid blue; */
+
+  width: 100%;
+  height: 15%;
+
+  gap: 0.5vh;
+}
+.logos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: white;
+  /* border: 1px solid blue; */
+
+  width: 100%;
+  height: 35%;
+}
+.logoTsi {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: white;
+  /* border: 1px solid blue; */
+
+  width: 20%;
+  height: 100%;
+}
+
+.logoCliente {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: white;
+  /* border: 1px solid blue; */
+
+  width: 30%;
+  height: 85%;
+}
+
+.padreTexto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: start;
+  background: white;
+  /* border: 1px solid blue; */
+
+  width: 100%;
+  height: 100%;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: small;
+}
+
+.texto {
+  color: #000;
+  margin-bottom: 2px;
+}
+
+.subTitulos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-align: start;
+  background: white;
+  /* border: 1px solid blue; */
+
+  width: 100%;
+  height: 3%;
+}
+
+.subTitulos1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: end;
+  background: white;
+  /* border: 1px solid green; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+
+  width: 100%;
+  height: 90%;
+  color: #000;
+}
+.franja {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: end;
+  background: orange;
+  /* border: 1px solid blue; */
+
+  width: 100%;
+  height: 10%;
+}
+
+/* ESTILOS MEJORADOS PARA GRUPOS DE IMÁGENES */
+.espacioFotos {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 79%;
+  padding-top: 0.5vh;
+  padding-bottom: 1vh;
+  gap: 0.5vh;
+}
+
+/* Contenedores de imagen mejorados */
+.espacioIndvFoto,
+.espacioIndvFotoHorizontal,
+.espacioIndvFotoOpcion2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Imagen vertical por defecto */
+.espacioIndvFoto {
+  width: 49.5%;
+  height: 49.5%;
+}
+
+/* Imagen vertical en modo estrecho */
+.espacioIndvFotoOpcion2 {
+  width: 35%;
+  height: 49.5%;
+}
+
+/* Imagen horizontal - ocupa todo el ancho */
+.espacioIndvFotoHorizontal {
+  width: 100%;
+  height: 49.5%;
+}
+
+/* Casos especiales para diferentes combinaciones */
+.espacioFotos.una-imagen {
+  justify-content: center;
+}
+
+.espacioFotos.una-imagen .espacioIndvFoto,
+.espacioFotos.una-imagen .espacioIndvFotoHorizontal {
+  width: 100%;
+  height: 100%;
+}
+
+/* Dos imágenes verticales */
+.espacioFotos.dos-imagenes-verticales {
+  justify-content: space-between;
+}
+
+.espacioFotos.dos-imagenes-verticales .espacioIndvFoto {
+  width: 49.5%;
+  height: 100%;
+}
+
+/* Dos imágenes horizontales */
+.espacioFotos.dos-imagenes-horizontales {
+  justify-content: center;
+  flex-direction: column;
+}
+
+.espacioFotos.dos-imagenes-horizontales .espacioIndvFotoHorizontal {
+  width: 100%;
+  height: 49.5%;
+}
+
+/* Una horizontal + dos verticales */
+.espacioFotos.horizontal-mas-verticales .espacioIndvFotoHorizontal {
+  width: 100%;
+  height: 49.5%;
+}
+
+.espacioFotos.horizontal-mas-verticales .espacioIndvFoto {
+  width: 49.5%;
+  height: 49.5%;
+}
+
+/* Tres imágenes verticales */
+.espacioFotos.tres-imagenes-verticales {
+  justify-content: space-around;
+}
+
+.espacioFotos.tres-imagenes-verticales .espacioIndvFoto {
+  width: 32%;
+  height: 100%;
+}
+
+/* Cuatro imágenes verticales */
+.espacioFotos.cuatro-imagenes-verticales {
+  justify-content: space-between;
+}
+
+.espacioFotos.cuatro-imagenes-verticales .espacioIndvFoto {
+  width: 49.5%;
+  height: 49.5%;
+}
+
+/* Asegurar que las imágenes no se deformen - MEJORADO */
+.espacioIndvFoto img,
+.espacioIndvFotoHorizontal img,
+.espacioIndvFotoOpcion2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Estilos específicos para cuando se genera el PDF */
+@media print {
+  .espacioIndvFoto img,
+  .espacioIndvFotoHorizontal img,
+  .espacioIndvFotoOpcion2 img {
+    object-fit: contain !important;
+    object-position: center !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+  }
+  
+  .espacioIndvFoto,
+  .espacioIndvFotoHorizontal,
+  .espacioIndvFotoOpcion2 {
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* Clase adicional para forzar contención de imagen */
+.imagen-contenida {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.pie{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: start;
+  background: white;
+  /* border: 1px solid green; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #000;
+}
+
+/* ***********************LOADER******************** */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-container {
+  text-align: center;
+  color: white;
+}
+
+.loader {
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid #3498db;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+.loader-text {
+  margin-top: 20px;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
